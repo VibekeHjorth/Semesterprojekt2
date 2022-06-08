@@ -10,12 +10,11 @@ import javafx.scene.shape.Polyline;
 import java.util.Date;
 
 public class EkgGuiController implements EkgObserver {
-    EkgDataRecorder recorder= new DummyEkgRecorder();
-    //EkgDataRecorder recorder = EKGApp.testMode ? new DummyEKGRecorder(): new RealEKGRecorder();
+    EkgDataRecorder recorder = new DummyEkgRecorder();
 
-    // Kobler poly til vores FXML fil.
     @FXML
     public Polyline poly;
+
     @Override
     public void handle(EkgData ekgData) {
         // update UI on UI Thread
@@ -29,7 +28,6 @@ public class EkgGuiController implements EkgObserver {
         Platform.runLater(task); // Alt kører på gui tråden - tasks til Gui sættes i kø
 
     }
-
     // Ved museklik. DataAccess klasse forbinder kode med database.
     public void startEkg(MouseEvent mouseEvent) {
         EkgDataAccess ekgDataAccess = new EkgDataAccess();
@@ -39,6 +37,6 @@ public class EkgGuiController implements EkgObserver {
         // start recorder and tell it to notify this class - observer pattern
         recorder.setObserver(this);
         recorder.record();
-    }
 
-};
+    }
+}
