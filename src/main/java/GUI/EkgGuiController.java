@@ -3,10 +3,16 @@ package GUI;
 import Business.EkgObserver;
 import Data.*;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Polyline;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class EkgGuiController implements EkgObserver {
@@ -38,5 +44,30 @@ public class EkgGuiController implements EkgObserver {
         recorder.setObserver(this);
         recorder.record();
 
+    }
+
+    public void Loadnyside(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/gui2.fxml"));
+        try {
+            AnchorPane anchorPane= fxmlLoader.load();
+            Stage loadStage= new Stage();
+            loadStage.setScene(new Scene(anchorPane));
+            loadStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Loadnyside2(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/gui3.fxml"));
+        try {
+            AnchorPane anchorPane= fxmlLoader.load();
+            Stage loadStage= new Stage();
+            loadStage.setScene(new Scene(anchorPane));
+            loadStage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
