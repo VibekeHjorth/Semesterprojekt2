@@ -25,7 +25,5 @@
          </TitledPane>
       </content>
    </TitledPane>
-   <Label layoutX="559.0" layoutY="536.0" text="Temperatur" />
    <Label layoutX="344.0" layoutY="557.0" text="Puls" />
-   <Label layoutX="307.0" layoutY="505.0" text="Iltmætning" />
 </AnchorPane>

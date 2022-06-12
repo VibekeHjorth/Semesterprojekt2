@@ -13,6 +13,7 @@ import javafx.scene.shape.Polyline;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class EkgGuiController implements EkgObserver {
@@ -21,19 +22,41 @@ public class EkgGuiController implements EkgObserver {
     @FXML
     public Polyline poly;
 
+    ArrayList<EkgData> ekgDataBuffer = new ArrayList<EkgData>();
+    double cycle = 0;
+    int amountOfDataPoints = 200;
+    int pointsGenerated = 0;
     @Override
     public void handle(EkgData ekgData) {
         // update UI on UI Thread
         Runnable task = new Runnable() {
             @Override
             public void run() {
-                poly.getPoints().addAll(ekgData.getTime(),ekgData.getVoltage());
+                pointsGenerated+= 1;
 
+                var points = poly.getPoints();
+
+                if (points.size() > amountOfDataPoints *2){
+                    points.clear();
+                    cycle += 1;
+                }
+
+                points.addAll(ekgData.getTime() - cycle * amountOfDataPoints,ekgData.getVoltage());
             }
         };
         Platform.runLater(task); // Alt kører på gui tråden - tasks til Gui sættes i kø
 
+        ekgDataBuffer.add(ekgData);
+
+        if(ekgDataBuffer.size() >= 10)
+        {
+            EkgDataAccess ekgDataAccess = new EkgDataAccess();
+            ekgDataAccess.createEkgValues(currentEkg.getId(), ekgDataBuffer );
+
+            ekgDataBuffer.clear();
+        }
     }
+    EkgDTO currentEkg;
     // Ved museklik. DataAccess klasse forbinder kode med database.
     public void startEkg(MouseEvent mouseEvent) {
         EkgDataAccess ekgDataAccess = new EkgDataAccess();
@@ -43,7 +66,7 @@ public class EkgGuiController implements EkgObserver {
         // start recorder and tell it to notify this class - observer pattern
         recorder.setObserver(this);
         recorder.record();
-
+currentEkg = ekg;
     }
 
     public void Loadnyside(ActionEvent actionEvent) {
