@@ -1,10 +1,12 @@
 package Data;
 
+import java.sql.Timestamp;
+
 public class EkgDataImpl implements EkgData {
     private double voltage;
     private double time;
 
-    public EkgDataImpl(double voltage, double time) {
+    public EkgDataImpl(double voltage, Timestamp time) {
         this.time=time;
         this.voltage=voltage;
 

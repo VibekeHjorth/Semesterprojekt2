@@ -2,6 +2,8 @@ package Data;
 
 import Business.EkgObserver;
 
+import java.sql.Timestamp;
+
 public class DummyEkgRecorder implements EkgDataRecorder {
     private EkgObserver observer;
 
@@ -12,14 +14,13 @@ public class DummyEkgRecorder implements EkgDataRecorder {
             @Override
             public void run() {
                 try {
-                    double time = 0;
+
                     //Dummy data generation
                     while(true) {
                         Thread.sleep(50);
-                        if (observer != null) {
-                            observer.handle(new EkgDataImpl(70*Math.random(), time));
-                            time+=0.5;
-                        }
+                        if (observer != null){
+                            observer.handle(new EkgDataImpl(70 * Math.random(), new Timestamp(System.currentTimeMillis()));
+                    }
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();

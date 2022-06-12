@@ -31,4 +31,10 @@ public class EkgDTO {
     public void setStart_time(Date start_time) {
         this.start_time = start_time;
     }
+
+    public void setVoltage(double voltage) {
+    }
+
+    public void setTime(Timestamp time) {
+    }
 }

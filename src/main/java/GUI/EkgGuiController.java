@@ -21,7 +21,15 @@ public class EkgGuiController implements EkgObserver {
         Runnable task = new Runnable() {
             @Override
             public void run() {
-                poly.getPoints().addAll(ekgData.getTime(),ekgData.getVoltage());
+                int cycle = 0;
+                poly.getPoints().addAll(ekgData.getTime()-cycle*100,ekgData.getVoltage());
+                if(ekgData.getTime()>100+100*cycle) {
+                    poly.getPoints().clear();
+                    cycle++;
+
+                }
+                //poly.getPoints().addAll(ekgData.getTime()-cycle*100,ekgData.getVoltage());
+                //poly.getPoints().remove(0);
 
             }
         };
