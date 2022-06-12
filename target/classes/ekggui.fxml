@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EkgGuiController">
+    <Button layoutX="17.0" layoutY="151.0" onAction="#Loadnyside">Vis patient data</Button>
+    <Button layoutX="21.0" layoutY="55.0" onMouseClicked="#startEkg">Start Ekg</Button>
+    <Polyline fx:id="poly" layoutX="154.0" layoutY="184.0" stroke="RED" />
+   <Button layoutX="14.0" layoutY="97.0" onAction="#Loadnyside2" text="Markerhændelse">Markerhændelse</Button>
+    <Button onAction="#Andremålinger">Vis andre målinger</Button>
+    <Button onAction="#grænseværdier">Sæt grænseværdier</Button>
+
+</AnchorPane>
