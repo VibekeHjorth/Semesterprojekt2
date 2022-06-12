@@ -93,4 +93,30 @@ currentEkg = ekg;
             e.printStackTrace();
         }
     }
+
+    public void Andremålinger(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/gui4.fxml"));
+        try {
+            AnchorPane anchorPane= fxmlLoader.load();
+            Stage loadStage= new Stage();
+            loadStage.setScene(new Scene(anchorPane));
+            loadStage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void grænseværdier(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/gui5.fxml"));
+        try {
+            AnchorPane anchorPane= fxmlLoader.load();
+            Stage loadStage= new Stage();
+            loadStage.setScene(new Scene(anchorPane));
+            loadStage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

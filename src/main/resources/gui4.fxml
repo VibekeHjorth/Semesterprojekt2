@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui4">
+    <Label text="Måling">
+      <graphic>
+         <Label text="Puls">
+            <graphic>
+               <TextArea prefHeight="200.0" prefWidth="200.0" />
+            </graphic>
+         </Label>
+      </graphic></Label>
+   <Label text="SpO2" />
+   <TextArea prefHeight="200.0" prefWidth="200.0" />
+   <Label text="Blodtryk">
+      <graphic>
+         <TextArea prefHeight="200.0" prefWidth="200.0" />
+      </graphic>
+   </Label>
+
+</AnchorPane>
