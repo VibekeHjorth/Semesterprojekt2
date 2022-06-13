@@ -18,7 +18,7 @@ public class DummyEkgRecorder implements EkgDataRecorder {
                         Thread.sleep(50);
                         if (observer != null) {
                             observer.handle(new EkgDataImpl(70*Math.random(), time));
-                            time+=0.5;
+                            time+=1;
                         }
                     }
                 } catch (InterruptedException e) {
