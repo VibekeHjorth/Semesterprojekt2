@@ -3,6 +3,7 @@ package Data;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class EkgDataAccess {
     public EkgDTO createEKG(int person_id, Date ekgStart) {
@@ -42,7 +43,7 @@ public class EkgDataAccess {
             // Kilde:https://stackoverflow.com/questions/530012/how-to-convert-java-util-date-to-java-sql-date?fbclid=IwAR1j4y2K4OBh9y5g97npGGbUwzkZBiaHAW2UHuTfp4xKT3Q3Y5zfMVL9f54
             for (EkgData i : ekg_Values) {
                 ps.setInt(1, (int) i.getVoltage());
-                ps.setInt(2, (int)i.getTime());
+                ps.setInt(2, (int) i.getTime());
                 ps.setInt(3, ekg_id);
                 ps.addBatch();
 
@@ -57,5 +58,30 @@ public class EkgDataAccess {
         }
     }
 
+    public List<EkgDTO> loadekg(String cpr) {
+        try {
+            Connection conn = SqlConnection.getConnection();
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM ekg JOIN patient WHERE ekg.patient_id=patient.id and patient.cpr=?");
+            statement.setString(1, cpr);
+            System.out.println("Connection established");
+            conn.setAutoCommit(false);
+            ResultSet show_tables = statement.executeQuery();
+            System.out.println("Got a resultset with number of colums:");
+            System.out.println(show_tables.getMetaData().getColumnCount());
+            ArrayList<EkgDTO> ekgDTOS = new ArrayList<>();
+            while (show_tables.next()) {
+                EkgDTO ekgDTO = new EkgDTO();
+                ekgDTO.setId(show_tables.getInt("id"));
+                ekgDTO.setPerson_id(show_tables.getInt("patient_id"));
+                ekgDTO.setStart_time(show_tables.getDate("start_time"));
+                System.out.println("Column 1: " + show_tables.getString(1));
+                System.out.println("Column 2: " + show_tables.getString(2));
+                System.out.println("Column 3: " + show_tables.getString(3));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
 
