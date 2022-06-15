@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 
 public class Gui2 {
-    Connection conn = SqlConnection.getConnection();
+    /*Connection conn = SqlConnection.getConnection();
     try {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Type in cpr:");
@@ -32,7 +32,7 @@ public class Gui2 {
 
     } catch (SQLException e) {
         e.printStackTrace();
-    }
+    } */
 
 }
 

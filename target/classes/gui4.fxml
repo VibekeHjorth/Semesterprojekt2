@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui4">
+   <TextArea layoutX="146.0" layoutY="274.0" prefHeight="72.0" prefWidth="96.0" />
+    <Label layoutX="14.0" layoutY="14.0" text="Målinger">
+      <font>
+         <Font size="22.0" />
+      </font></Label>
+   <Label layoutX="40.0" layoutY="181.0" text="SpO2" textFill="#0e1c86">
+      <font>
+         <Font size="21.0" />
+      </font></Label>
+   <Label layoutX="27.0" layoutY="279.0" text="Blodtryk" textFill="#e8b62d">
+      <font>
+         <Font size="21.0" />
+      </font>
+   </Label>
+   <Label layoutX="45.0" layoutY="88.0" text="Puls" textFill="#eb0d0d">
+      <font>
+         <Font size="22.0" />
+      </font>
+   </Label>
+   <TextArea layoutX="146.0" layoutY="78.0" prefHeight="66.0" prefWidth="96.0" />
+   <TextArea layoutX="146.0" layoutY="163.0" prefHeight="66.0" prefWidth="96.0" />
+
+</AnchorPane>
