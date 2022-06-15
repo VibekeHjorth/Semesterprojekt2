@@ -1,8 +1,7 @@
 package Business;
 
-import Data.EkgData;
-import Data.EkgDataImpl;
+import Data.EkgSensorData;
 
 public interface EkgObserver {
-    void handle(EkgData ekgData);
+    void handle(EkgSensorData ekgSensorData);
 }

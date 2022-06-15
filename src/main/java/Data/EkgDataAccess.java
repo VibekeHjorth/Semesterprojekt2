@@ -34,21 +34,22 @@ public class EkgDataAccess {
         return ekgDTO;
     }
 
-    public void createEkgValues(int ekg_id, ArrayList<EkgData> ekg_Values) {
+    public void createEkgValues(List<EkgValues> ekgValues) {
 
         Connection conn = SqlConnection.getConnection();
         try {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO ekg_values (voltage, ekg_time, ekg_id) VALUES (?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             // Kilde:https://stackoverflow.com/questions/530012/how-to-convert-java-util-date-to-java-sql-date?fbclid=IwAR1j4y2K4OBh9y5g97npGGbUwzkZBiaHAW2UHuTfp4xKT3Q3Y5zfMVL9f54
-            for (EkgData i : ekg_Values) {
+            for (EkgValues i : ekgValues) {
                 ps.setInt(1, (int) i.getVoltage());
-                ps.setInt(2, (int) i.getTime());
-                ps.setInt(3, ekg_id);
+                ps.setInt(2, (int) Math.toIntExact(i.getEkg_Time())); //TODO: Make long in db;
+                ps.setInt(3, i.getEkg_Id());
                 ps.addBatch();
 
-                ps.clearParameters();
+                //ps.clearParameters(); // WHY?
             }
+            System.out.println("Inserted new data in db;");
 
             ps.executeBatch();
 
@@ -59,30 +60,37 @@ public class EkgDataAccess {
     }
 
     public List<EkgDTO> loadekg(String cpr) {
-        try {
-            Connection conn = SqlConnection.getConnection();
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM ekg JOIN patient WHERE ekg.patient_id=patient.id and patient.cpr=?");
-            statement.setString(1, cpr);
-            System.out.println("Connection established");
-            conn.setAutoCommit(false);
-            ResultSet show_tables = statement.executeQuery();
-            System.out.println("Got a resultset with number of colums:");
-            System.out.println(show_tables.getMetaData().getColumnCount());
-            ArrayList<EkgDTO> ekgDTOS = new ArrayList<>();
-            while (show_tables.next()) {
-                EkgDTO ekgDTO = new EkgDTO();
-                ekgDTO.setId(show_tables.getInt("id"));
-                ekgDTO.setPerson_id(show_tables.getInt("patient_id"));
-                ekgDTO.setStart_time(show_tables.getDate("start_time"));
-                System.out.println("Column 1: " + show_tables.getString(1));
-                System.out.println("Column 2: " + show_tables.getString(2));
-                System.out.println("Column 3: " + show_tables.getString(3));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Connection conn = SqlConnection.getConnection();
+//            PreparedStatement statement = conn.prepareStatement("SELECT * FROM ekg JOIN patient WHERE ekg.patient_id=patient.id and patient.cpr=?");
+//            statement.setString(1, cpr);
+//            System.out.println("Connection established");
+//            conn.setAutoCommit(false);
+//            ResultSet show_tables = statement.executeQuery();
+//            System.out.println("Got a resultset with number of colums:");
+//            System.out.println(show_tables.getMetaData().getColumnCount());
+//            ArrayList<EkgSensorData> ekgDTOS = new ArrayList<>();
+//            while (show_tables.next()) {
+//                EkgValues ekgData = new EkgValues();
+//                ekgData.setId(show_tables.getInt("id"));
+//                ekgData.setPerson_id(show_tables.getInt("patient_id"));
+//                ekgDTO.setStart_time(show_tables.getDate("start_time"));
+//                System.out.println("Column 1: " + show_tables.getString(1));
+//                System.out.println("Column 2: " + show_tables.getString(2));
+//                System.out.println("Column 3: " + show_tables.getString(3));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
         return null;
     }
+//    public List<EkgValues> loadEkgValues(int ekgId){
+//        //TODO: Implement loading ekg Values;
+//        SELECT * FROM ekg_values WHERE ekg_id = ?
+//
+//        setInt(1, ekgId);
+//
+//    }
 }
 

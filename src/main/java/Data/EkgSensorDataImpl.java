@@ -1,10 +1,13 @@
 package Data;
 
-public class EkgDataImpl implements EkgData {
+public class EkgSensorDataImpl implements EkgSensorData {
     private double voltage;
-    private double time;
+    private Long time;
 
-    public EkgDataImpl(double voltage, double time) {
+    public EkgSensorDataImpl() {
+    }
+
+    public EkgSensorDataImpl(double voltage, Long time) {
         this.time=time;
         this.voltage=voltage;
 
@@ -15,18 +18,19 @@ public class EkgDataImpl implements EkgData {
         return voltage;
     }
 
+
     @Override
     public void setVoltage(double voltage) {
         this.voltage = voltage;
     }
 
     @Override
-    public double getTime() {
+    public Long getTime() {
         return time;
     }
 
     @Override
-    public void setTime(double time) {
+    public void setTime(Long time) {
         this.time = time;
     }
 }

@@ -12,12 +12,12 @@ public class DummyEkgRecorder implements EkgDataRecorder {
             @Override
             public void run() {
                 try {
-                    double time = 0;
+                    Long time = 0L;
                     //Dummy data generation
                     while(true) {
                         Thread.sleep(50);
                         if (observer != null) {
-                            observer.handle(new EkgDataImpl(70*Math.random(), time));
+                            observer.handle(new EkgSensorDataImpl(70*Math.random(), time));
                             time+=1;
                         }
                     }

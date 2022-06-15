@@ -4,9 +4,21 @@ import java.sql.Date;
 import java.sql.Timestamp;
 // DTO : Data Transfer Object. DAO: Data Access Object.
 public class EkgDTO {
+
     private int id;
     private int person_id;
     private Date start_time;
+
+    public EkgDTO() {
+    }
+
+    public EkgDTO(int id, int person_id, Date start_time) {
+        this.id = id;
+        this.person_id = person_id;
+        this.start_time = start_time;
+    }
+
+
 
     public int getId() {
         return id;
