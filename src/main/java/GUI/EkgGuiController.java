@@ -66,7 +66,7 @@ public class EkgGuiController implements EkgObserver {
         // start recorder and tell it to notify this class - observer pattern
         recorder.setObserver(this);
         recorder.record();
-currentEkg = ekg;
+        currentEkg = ekg;
     }
 
     public void Loadnyside(ActionEvent actionEvent) {
@@ -119,4 +119,6 @@ currentEkg = ekg;
             e.printStackTrace();
         }
     }
+
+
 }
