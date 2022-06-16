@@ -18,7 +18,6 @@ public class EkgSensorDataImpl implements EkgSensorData {
         return voltage;
     }
 
-
     @Override
     public void setVoltage(double voltage) {
         this.voltage = voltage;

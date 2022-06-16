@@ -2,11 +2,12 @@ package Data;
 import Business.EkgObserver;
 import com.fazecast.jSerialComm.*;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Serialport implements EkgDataRecorder {
     // Declare objects whithin class but out from methods.
-    SerialPort serialPort; // fra bibliotek jSerialComm
+    SerialPort serialPort;
     PrintWriter out;
     BufferedReader reader;
     private EkgObserver observer;
@@ -18,7 +19,7 @@ public class Serialport implements EkgDataRecorder {
         boolean portOpened = serialPort.openPort();// Open serial port
         serialPort.setComPortParameters(115200, 8, 1, 0);// Set params.
         serialPort.setFlowControl(SerialPort.FLOW_CONTROL_DISABLED);
-        System.out.println("Port opened: " + portOpened + ". Waiting 5 seconds before starting output stream");
+        System.out.println("Port opened: " + portOpened);
 
         // PrintWriter and getOutputStream() method to send data to Arduino
         //out = new PrintWriter(serialPort.getOutputStream()); // Helps writing to arduino object af printwriter i variablen out
@@ -26,29 +27,28 @@ public class Serialport implements EkgDataRecorder {
     }
     @Override
     public void record() {
+
         // Method to read data from Arduino
-        public String readData() {
-            List<int> resultList = new List<int>() {
-            };
-            while (true) {
+        new Thread(new Runnable() {
+            public void run() {
                 try {
-                    if (serialPort.bytesAvailable() > 0) {
-                        var inputText = reader.readLine();
-                        int intResult=Integer. parseInt(inputText);
-                        resultList = resultList.add(intResult);
-                        System.out.println("Recieved data from arduino: " + inputText);
-                    } else {
-                        return resultList;
-                    }
-                } catch (IOException ex) {
-                    System.out.println("IO exception");
-                    return null;
+                    Long time = 0L;
+                    while (true) {
+                        Thread.sleep(1000);
+                        if(observer!=null){
+                            if (serialPort.bytesAvailable() > 0) {
+                                var inputText = reader.readLine();
+                                int intResult = Integer.parseInt(inputText);
+                                System.out.println("Recieved data from arduino: " + inputText);
+                                observer.handle(new EkgSensorDataImpl(intResult, time));
+                        }
+                    }}
+                } catch (IOException | InterruptedException ex) {
+                    ex.printStackTrace();
                 }
-
             }
-        }}
-
-
+        }).start();
+        }
 
 
     @Override

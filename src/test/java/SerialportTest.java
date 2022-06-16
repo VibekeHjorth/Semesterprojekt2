@@ -1,4 +1,4 @@
-import Business.EkgObserver;
+/*import Business.EkgObserver;
 import Data.EkgDataRecorder;
 import Data.EkgSensorData;
 import Data.Serialport;
@@ -30,3 +30,4 @@ public class ArduoinoRecorderTest implements EkgObserver {
         this.dataList.add(ekgSensorData);
     }
 }
+*/
