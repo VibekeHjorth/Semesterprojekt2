@@ -21,8 +21,8 @@ public class Gui2 {
     public void buttonPressed(ActionEvent actionEvent) {
         //Fetch Data
         String cprtext = cprField.getText();
-        List<EkgDTO> loadekg = new EkgDataAccess().loadekg(cpr);
-        List<EkgValues>   values = new EkgDataAccess().loadEkgValues(ekg_id);
+        List<EkgDTO> loadekg = new EkgDataAccess().loadekg("cpr");
+        List<EkgValues>   values = new EkgDataAccess().loadEkgValues(Integer.parseInt("ekg_id"));
 
                 List<Double> convertedValues = null;
 

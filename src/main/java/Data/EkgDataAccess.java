@@ -96,21 +96,29 @@ public class EkgDataAccess {
            System.out.println("Connection established");
            conn.setAutoCommit(false);
            ResultSet show_tables = statement.executeQuery();
+           //Henter alle statements og viser dem.
            System.out.println("Got a resultset with number of colums:");
            System.out.println(show_tables.getMetaData().getColumnCount());
+           //Henter data fra tabeller
            ArrayList<EkgValues> ekgDTOS = new ArrayList<>();
+           //Opretter en ny arrayliste
            while (show_tables.next()) {
                EkgValues ekgData = new EkgValues();
+               //opretter et nyt objekt til klassen EkgValues.
                ekgData.setId(show_tables.getInt("id"));
                ekgData.setEkg_id(show_tables.getInt("ekg_id"));
                ekgData.setVoltage(show_tables.getInt("voltage"));
                ekgData.setEkg_Time(show_tables.getLong("ekg_time"));
+               //henter kolonner under metoderne
                ekgDTOS.add(ekgData);
+               //Tilføjer ekgdata til listen
                System.out.println("Column 1: " + show_tables.getString(1));
                System.out.println("Column 2: " + show_tables.getString(2));
                System.out.println("Column 3: " + show_tables.getString(3));
+               //printer kolonnerne og deres værdier ud.
            }
            return ekgDTOS;
+           //returnerer listen
        } catch (SQLException e) {
            e.printStackTrace();
        }
