@@ -1,5 +1,6 @@
 package Data;
 
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,37 +61,61 @@ public class EkgDataAccess {
     }
 
     public List<EkgDTO> loadekg(String cpr) {
-//        try {
-//            Connection conn = SqlConnection.getConnection();
-//            PreparedStatement statement = conn.prepareStatement("SELECT * FROM ekg JOIN patient WHERE ekg.patient_id=patient.id and patient.cpr=?");
-//            statement.setString(1, cpr);
-//            System.out.println("Connection established");
-//            conn.setAutoCommit(false);
-//            ResultSet show_tables = statement.executeQuery();
-//            System.out.println("Got a resultset with number of colums:");
-//            System.out.println(show_tables.getMetaData().getColumnCount());
-//            ArrayList<EkgSensorData> ekgDTOS = new ArrayList<>();
-//            while (show_tables.next()) {
-//                EkgValues ekgData = new EkgValues();
-//                ekgData.setId(show_tables.getInt("id"));
-//                ekgData.setPerson_id(show_tables.getInt("patient_id"));
-//                ekgDTO.setStart_time(show_tables.getDate("start_time"));
-//                System.out.println("Column 1: " + show_tables.getString(1));
-//                System.out.println("Column 2: " + show_tables.getString(2));
-//                System.out.println("Column 3: " + show_tables.getString(3));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        // loader cpr data fra
+        try {
+            Connection conn = SqlConnection.getConnection();
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM ekg JOIN patient WHERE ekg.patient_id=patient.id and patient.cpr=?");
+            statement.setString(1, cpr);
+            System.out.println("Connection established");
+            conn.setAutoCommit(false);
+            ResultSet show_tables = statement.executeQuery();
+            System.out.println("Got a resultset with number of colums:");
+            System.out.println(show_tables.getMetaData().getColumnCount());
+            ArrayList<EkgSensorData> ekgDTOS = new ArrayList<>();
+            while (show_tables.next()) {
+               EkgDTO patientdata= new EkgDTO();
+                patientdata.setId(show_tables.getInt("id"));
+                patientdata.setPerson_id(show_tables.getInt("patient_id"));
+                patientdata.setStart_time(show_tables.getDate("start_time"));
+                System.out.println("Column 1: " + show_tables.getString(1));
+                System.out.println("Column 2: " + show_tables.getString(2));
+                System.out.println("Column 3: " + show_tables.getString(3));
+            }
+        } catch (SQLException e) {
+           e.printStackTrace();
+       }
 
         return null;
     }
-//    public List<EkgValues> loadEkgValues(int ekgId){
-//        //TODO: Implement loading ekg Values;
-//        SELECT * FROM ekg_values WHERE ekg_id = ?
-//
-//        setInt(1, ekgId);
-//
-//    }
+   public List<EkgValues> loadEkgValues(int ekgId) {
+
+       try {
+           Connection conn = SqlConnection.getConnection();
+           PreparedStatement statement = conn.prepareStatement("SELECT * FROM ekg_values WHERE ekg_id=?");
+           statement.setString(1, "ekg_id");
+           System.out.println("Connection established");
+           conn.setAutoCommit(false);
+           ResultSet show_tables = statement.executeQuery();
+           System.out.println("Got a resultset with number of colums:");
+           System.out.println(show_tables.getMetaData().getColumnCount());
+           ArrayList<EkgValues> ekgDTOS = new ArrayList<>();
+           while (show_tables.next()) {
+               EkgValues ekgData = new EkgValues();
+               ekgData.setId(show_tables.getInt("id"));
+               ekgData.setEkg_id(show_tables.getInt("ekg_id"));
+               ekgData.setVoltage(show_tables.getInt("voltage"));
+               ekgData.setEkg_Time(show_tables.getLong("ekg_time"));
+               ekgDTOS.add(ekgData);
+               System.out.println("Column 1: " + show_tables.getString(1));
+               System.out.println("Column 2: " + show_tables.getString(2));
+               System.out.println("Column 3: " + show_tables.getString(3));
+           }
+           return ekgDTOS;
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+       return null;
+   }
+
 }
 

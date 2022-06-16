@@ -6,8 +6,8 @@ import java.util.Date;
 public class EkgValues {
     int id = 0;
     int ekg_Id =0 ;
-    double voltage = 0;
-    Long ekg_Time= null ;
+    double voltage = 0; //Y
+    Long ekg_Time= null ; //X
 
     public EkgValues() {
     }

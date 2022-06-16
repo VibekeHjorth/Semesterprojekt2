@@ -3,22 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
+<?import javafx.scene.shape.Polyline?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui2">
    <children>
-      <Label text="Navn" />
-      <TextField />
       <Label text="CPR" />
-      <TextField />
-      <Label text="Adresse">
-         <graphic>
-            <TextField />
-         </graphic>
-      </Label>
-      <Label text="Telefonnummer">
-         <graphic>
-            <TextField />
-         </graphic>
-      </Label>
+      <TextField promptText="CPR" fx:id="cprField" />
+      <Polyline fx:id="poly"></Polyline>
+      <Button mnemonicParsing="false" text="Enter" onAction="#buttonPressed" />
    </children>
 </AnchorPane>
