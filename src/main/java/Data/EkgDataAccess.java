@@ -44,7 +44,7 @@ public class EkgDataAccess {
             // Kilde:https://stackoverflow.com/questions/530012/how-to-convert-java-util-date-to-java-sql-date?fbclid=IwAR1j4y2K4OBh9y5g97npGGbUwzkZBiaHAW2UHuTfp4xKT3Q3Y5zfMVL9f54
             for (EkgValues i : ekgValues) {
                 ps.setInt(1, (int) i.getVoltage());
-                ps.setInt(2, (int) Math.toIntExact(i.getEkg_Time())); //TODO: Make long in db;
+                ps.setLong(2,  i.getEkg_Time()); //TODO: Make long in db;
                 ps.setInt(3, i.getEkg_Id());
                 ps.addBatch();
 
