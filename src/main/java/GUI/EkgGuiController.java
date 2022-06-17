@@ -21,7 +21,7 @@ public class EkgGuiController implements EkgObserver {
     EkgDataRecorder recorder = new DummyEkgRecorder(); //new ArduinoRecorder();
     private DataConsumer consumer;
     EkgDTO currentEkg;
-    int currentEkgId = 17; //TODO: FIX so that it is related to a patient
+    int currentEkgId = 1; //TODO: FIX so that it is related to a patient
 
     @FXML
     public Polyline poly;
@@ -112,31 +112,9 @@ public class EkgGuiController implements EkgObserver {
         }
     }
 
-    public void Andremålinger(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/gui4.fxml"));
-        try {
-            AnchorPane anchorPane= fxmlLoader.load();
-            Stage loadStage= new Stage();
-            loadStage.setScene(new Scene(anchorPane));
-            loadStage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void grænseværdier(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/gui5.fxml"));
-        try {
-            AnchorPane anchorPane= fxmlLoader.load();
-            Stage loadStage= new Stage();
-            loadStage.setScene(new Scene(anchorPane));
-            loadStage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
+
 
 
 }
