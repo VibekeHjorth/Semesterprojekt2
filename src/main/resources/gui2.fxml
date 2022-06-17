@@ -2,13 +2,17 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.shape.Polyline?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui2">
    <children>
-      <Label text="CPR" />
-      <TextField promptText="CPR" fx:id="cprField" />
-      <Polyline fx:id="poly"></Polyline>
-      <Button mnemonicParsing="false" text="Enter" onAction="#buttonPressed" />
+      <Label layoutX="198.0" layoutY="143.0" text="CPR">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <TextField fx:id="cprField" layoutX="274.0" layoutY="141.0" promptText="CPR" />
+      <Polyline fx:id="poly" />
+      <Button layoutX="319.0" layoutY="200.0" mnemonicParsing="false" onAction="#buttonPressed" text="Enter" />
    </children>
 </AnchorPane>

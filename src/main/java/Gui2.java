@@ -17,18 +17,21 @@ import java.util.Scanner;
 public class Gui2 {
     @FXML
     public Polyline poly;
+    //Opretter en polyline
     public TextField cprField;
-
+    //opretter et cprfield
+//opretter en knap, som har en metode, som henter data fra databasen.
     public void buttonPressed(ActionEvent actionEvent) {
         //Fetch Data
         String cprtext = cprField.getText();
+        //opretter et objekt, som henter teksten fra feltet.
         List<EkgDTO> loadekg = new EkgDataAccess().loadekg(cprtext);
         //TODO Make a listview for the patients EKG's - For now - just take the first
 
         List<EkgValues> ekgvalues = new EkgDataAccess().loadEkgValues(loadekg.get(0).getId());
-
-        List<Double> convertedValues = new ArrayList<>();
-        for (EkgValues value : ekgvalues) {
+//En liste med objekter, som loader elementer fra listen, henter id)
+        List<Double> convertedValues = new ArrayList<>();  //opretter en ny liste til doubles
+        for (EkgValues value : ekgvalues) {  //Tæller elementer i listen
             convertedValues.add((double) value.getEkg_Time());
             convertedValues.add(value.getVoltage());
         }

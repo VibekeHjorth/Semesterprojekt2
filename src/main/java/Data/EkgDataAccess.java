@@ -60,17 +60,17 @@ public class EkgDataAccess {
         }
     }
 
-    public List<EkgDTO> loadekg(String cpr) {
+    public List<EkgDTO> loadekg(String cpr) {  //liste til at loade ekg, cpr er parameter)
         // loader cpr data fra
         try {
-            Connection conn = SqlConnection.getConnection();
-            PreparedStatement statement = conn.prepareStatement("SELECT * FROM ekg JOIN patient WHERE ekg.patient_id=patient.id and patient.cpr=?");
-            statement.setString(1, cpr);
+            Connection conn = SqlConnection.getConnection();  //får oprettet connection
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM ekg JOIN patient WHERE ekg.patient_id=patient.id and patient.cpr=?"); //joiner de to tabeller ekg og patient.
+            statement.setString(1, cpr);  //finder cpr
             System.out.println("Connection established");
             conn.setAutoCommit(false);
-            ResultSet show_tables = statement.executeQuery();
+            ResultSet show_tables = statement.executeQuery();   //execute query og giver data.
             System.out.println("Got a resultset with number of colums:");
-            System.out.println(show_tables.getMetaData().getColumnCount());
+            System.out.println(show_tables.getMetaData().getColumnCount()); //printer
             ArrayList<EkgSensorData> ekgDTOS = new ArrayList<>();
             while (show_tables.next()) {
                EkgDTO patientdata= new EkgDTO();
