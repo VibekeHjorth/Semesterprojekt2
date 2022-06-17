@@ -31,11 +31,13 @@ public class Gui2 {
         List<EkgValues> ekgvalues = new EkgDataAccess().loadEkgValues(loadekg.get(0).getId());
 //En liste med objekter, som loader elementer fra listen, henter id)
         List<Double> convertedValues = new ArrayList<>();  //opretter en ny liste til doubles
-        for (EkgValues value : ekgvalues) {  //Tæller elementer i listen
+        for (EkgValues value : ekgvalues) {  //gennemgår alle elementer fra en list og udfører kommandoer til at bruge værdien ekgtime og voltage til at sætte på listen, som så bliver hentet fra polyline og sat på x og y kordinat..
             convertedValues.add((double) value.getEkg_Time());
             convertedValues.add(value.getVoltage());
         }
-        Platform.runLater(()-> poly.getPoints().addAll(convertedValues));
+        Platform.runLater(()->
+                poly.getPoints().addAll(convertedValues)
+        );
 
     }
 

@@ -71,7 +71,7 @@ public class EkgDataAccess {
             ResultSet show_tables = statement.executeQuery();   //execute query og giver data.
             System.out.println("Got a resultset with number of colums:");
             System.out.println(show_tables.getMetaData().getColumnCount()); //printer
-            ArrayList<EkgSensorData> ekgDTOS = new ArrayList<>();
+            ArrayList<EkgDTO> ekgDTOS = new ArrayList<>();
             while (show_tables.next()) {
                EkgDTO patientdata= new EkgDTO();
                 patientdata.setId(show_tables.getInt("id"));
@@ -80,7 +80,9 @@ public class EkgDataAccess {
                 System.out.println("Column 1: " + show_tables.getString(1));
                 System.out.println("Column 2: " + show_tables.getString(2));
                 System.out.println("Column 3: " + show_tables.getString(3));
+                ekgDTOS.add(patientdata);
             }
+            return ekgDTOS;
         } catch (SQLException e) {
            e.printStackTrace();
        }
@@ -106,13 +108,13 @@ public class EkgDataAccess {
                EkgValues ekgData = new EkgValues();
                //opretter et nyt objekt til klassen EkgValues.
                ekgData.setId(show_tables.getInt("id"));
-               ekgData.setEkg_id(show_tables.getInt("ekg_id"));
-               ekgData.setVoltage(show_tables.getInt("voltage"));
-               ekgData.setEkg_Time(show_tables.getLong("ekg_time"));
+               ekgData.setEkg_id(show_tables.getInt("ekg_id")); //henter værdien for kolonnen som en int
+               ekgData.setVoltage(show_tables.getInt("voltage")); //henterværdien for kolonnen som en int
+               ekgData.setEkg_Time(show_tables.getLong("ekg_time")); //henter værdien for kollonen som en long
                //henter kolonner under metoderne
                ekgDTOS.add(ekgData);
                //Tilføjer ekgdata til listen
-               System.out.println("Column 1: " + show_tables.getString(1));
+               System.out.println("Column 1: " + show_tables.getString(1)); //Henter værdien for kolonnen i en række i objektet og returnerer det som en string.
                System.out.println("Column 2: " + show_tables.getString(2));
                System.out.println("Column 3: " + show_tables.getString(3));
                //printer kolonnerne og deres værdier ud.
