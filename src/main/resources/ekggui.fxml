@@ -4,12 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EkgGuiController">
-    <Button layoutX="350.0" layoutY="171.0" onAction="#Loadnyside">Vis patient data</Button>
-    <Button layoutX="58.0" layoutY="171.0" onMouseClicked="#startEkg">Start Ekg</Button>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EkgGuiController">
+    <Button layoutX="215.0" layoutY="275.0" onAction="#Loadnyside">Vis patient data</Button>
+    <Button layoutX="233.0" layoutY="335.0" onMouseClicked="#startEkg">Start Ekg</Button>
     <Polyline fx:id="poly" layoutX="154.0" layoutY="184.0" stroke="RED" />
-   <Button layoutX="347.0" layoutY="223.0" onAction="#Loadnyside2" text="Markerhændelse">Markerhændelse</Button>
-    <Button layoutX="545.0" layoutY="223.0" onAction="#Andremålinger">Vis andre målinger</Button>
-    <Button layoutX="543.0" layoutY="171.0" onAction="#grænseværdier">Sæt grænseværdier</Button>
 
 </AnchorPane>
