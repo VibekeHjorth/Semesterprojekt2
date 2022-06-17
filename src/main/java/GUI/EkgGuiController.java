@@ -21,7 +21,7 @@ public class EkgGuiController implements EkgObserver {
     EkgDataRecorder recorder = new DummyEkgRecorder(); //new ArduinoRecorder();
     private DataConsumer consumer;
     EkgDTO currentEkg;
-    int currentEkgId = 17; //TODO: FIX so that it is related to a patient
+    int currentEkgId = 1; //TODO: FIX so that it is related to a patient
 
     @FXML
     public Polyline poly;
