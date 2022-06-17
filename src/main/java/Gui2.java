@@ -1,4 +1,5 @@
 import Data.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -14,47 +15,27 @@ import java.util.Scanner;
 
 
 public class Gui2 {
-@FXML
+    @FXML
     public Polyline poly;
     public TextField cprField;
 
     public void buttonPressed(ActionEvent actionEvent) {
         //Fetch Data
         String cprtext = cprField.getText();
-        List<EkgDTO> loadekg = new EkgDataAccess().loadekg("cpr");
-        List<EkgValues>   values = new EkgDataAccess().loadEkgValues(Integer.parseInt("ekg_id"));
+        List<EkgDTO> loadekg = new EkgDataAccess().loadekg(cprtext);
+        //TODO Make a listview for the patients EKG's - For now - just take the first
 
-                List<Double> convertedValues = null;
+        List<EkgValues> ekgvalues = new EkgDataAccess().loadEkgValues(loadekg.get(0).getId());
 
-        poly.getPoints().addAll(convertedValues);
-
-        // @Override
-        //    public void handle(EkgSensorData ekgSensorData) {
-        //        // update UI on UI Thread
-        //        EkgValues ekgValues = new EkgValues(0,currentEkgId,
-        //                ekgSensorData.getVoltage(),ekgSensorData.getTime());
-        //        consumer.enqueue(ekgValues);
-        //        //This wakes up the consumer to save data
-        //        consumer.notifyOnEmpty();
-        //
-        //        Runnable task = new Runnable() {
-        //            @Override
-        //            public void run() {
-        //                pointsGenerated+= 1;
-        //
-        //                var points = poly.getPoints();
-        //
-        //                if (points.size() > amountOfDataPoints *2){
-        //                    points.clear();
-        //                    cycle += 1;
-        //                }
-        //
-        //                points.addAll(ekgSensorData.getTime() - cycle * amountOfDataPoints, ekgSensorData.getVoltage());
-        //            }
-        //        };
-        //        Platform.runLater(task); // Alt kører på gui tråden - tasks til Gui sættes i kø
+        List<Double> convertedValues = new ArrayList<>();
+        for (EkgValues value : ekgvalues) {
+            convertedValues.add((double) value.getEkg_Time());
+            convertedValues.add(value.getVoltage());
+        }
+        Platform.runLater(()-> poly.getPoints().addAll(convertedValues));
 
     }
+
     /*Connection conn = SqlConnection.getConnection();
     try {
         Scanner scanner = new Scanner(System.in);
