@@ -27,6 +27,7 @@ public class Serialport implements EkgDataRecorder {
     }
     @Override
     public void record() {
+        open();
 
         // Method to read data from Arduino
         new Thread(new Runnable() {
@@ -41,6 +42,7 @@ public class Serialport implements EkgDataRecorder {
                                 int intResult = Integer.parseInt(inputText);
                                 System.out.println("Recieved data from arduino: " + inputText);
                                 observer.handle(new EkgSensorDataImpl(intResult, time));
+                                time+=1;
                         }
                     }}
                 } catch (IOException | InterruptedException ex) {
@@ -56,7 +58,8 @@ public class Serialport implements EkgDataRecorder {
         this.observer=observer;}
 
     // Closing serialport
-    public void close() { serialPort.closePort();// Close serial port
+    public void close() {
+        serialPort.closePort();// Close serial port
     }
 }
 
