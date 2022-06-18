@@ -65,8 +65,50 @@ public class PulsController {
     }
 
     public void analyzePressed(ActionEvent actionEvent) {
-        System.out.println("Analysis");
-    }
+        var average = ekgvalues.stream().mapToDouble(s -> s.getVoltage()).average().getAsDouble();
+        var max  = ekgvalues.stream().mapToDouble(s -> s.getVoltage()).max().getAsDouble();
+        var betweenAverageAndMax = average + (max-average) * 0.5;
 
+        double previousValue = -1000;
+        double localMax = -1000;
+        ArrayList<EkgValues> localMaximums = new ArrayList<>();
+        boolean isClimbing = false;
+        for(EkgValues value : ekgvalues){
+            var voltage = value.getVoltage();
+            if (voltage > betweenAverageAndMax){
+                if (voltage > previousValue){
+                    isClimbing = true;
+                    localMax = voltage;
+                }else{
+                    // we're done climbing mountain
+                    if (isClimbing){
+                        localMaximums.add(value);
+                        isClimbing = false;
+                    }
+                }
+            }
+            previousValue = voltage;
+        }
+
+        var first = localMaximums.get(0);
+        var second = localMaximums.get(1);
+
+        var firstTime = first.getEkg_Time();
+        var secondTime = second.getEkg_Time();
+        System.out.println("Analysis done. Found " + localMaximums.size() + " maximums");
+        System.out.println("First maximum time and value: (" + first.getEkg_Time() + ", " + first.getVoltage() + ")");
+        System.out.println("Second maximum time and value: (" + second.getEkg_Time() + ", " + second.getVoltage() + ")");
+        var timeDiff = secondTime - firstTime;
+        final var frequency = 400.0;
+        var msPerDataPoint = 1000.0 / frequency;
+
+        var totalMs = timeDiff * msPerDataPoint;
+        System.out.println("Estimated time between first and second beat (ms): " + totalMs);
+
+        var oneMinute = 1000*60;
+        var beatsPerMinute = oneMinute / totalMs;
+
+        System.out.println("Estimate pulse: " + beatsPerMinute);
+    }
 }
 
