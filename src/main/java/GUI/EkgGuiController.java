@@ -101,7 +101,7 @@ public class EkgGuiController implements EkgObserver {
         }
     }
 
-    public void loadPulsSide(ActionEvent actionEvent) {
+    public void loadPulsSide(ActionEvent actionEvent) { //
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/puls.fxml"));
         try {
             AnchorPane anchorPane= fxmlLoader.load();
