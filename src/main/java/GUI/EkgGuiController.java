@@ -33,7 +33,7 @@ public class EkgGuiController implements EkgObserver {
     @Override
     public void handle(EkgSensorData ekgSensorData) {
         // update UI on UI Thread
-        EkgValues ekgValues = new EkgValues(0,currentEkgId,
+        EkgValues ekgValues = new EkgValues(0,currentEkg.getId(),
                 ekgSensorData.getVoltage(),ekgSensorData.getTime());
         consumer.enqueue(ekgValues);
         //This wakes up the consumer to save data

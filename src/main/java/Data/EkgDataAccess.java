@@ -94,7 +94,7 @@ public class EkgDataAccess {
        try {
            Connection conn = SqlConnection.getConnection();
            PreparedStatement statement = conn.prepareStatement("SELECT * FROM ekg_values WHERE ekg_id=?");
-           statement.setString(1, "ekg_id");
+           statement.setInt(1, ekgId);
            System.out.println("Connection established");
            conn.setAutoCommit(false);
            ResultSet show_tables = statement.executeQuery();

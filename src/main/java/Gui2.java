@@ -27,8 +27,9 @@ public class Gui2 {
         //opretter et objekt, som henter teksten fra feltet.
         List<EkgDTO> loadekg = new EkgDataAccess().loadekg(cprtext);
         //TODO Make a listview for the patients EKG's - For now - just take the first
-
-        List<EkgValues> ekgvalues = new EkgDataAccess().loadEkgValues(loadekg.get(0).getId());
+        int lastIdx = loadekg.size() - 1;
+        EkgDTO lastElement = loadekg.get(lastIdx);
+        List<EkgValues> ekgvalues = new EkgDataAccess().loadEkgValues(lastElement.getId());
 //En liste med objekter, som loader elementer fra listen, henter id)
         List<Double> convertedValues = new ArrayList<>();  //opretter en ny liste til doubles
         for (EkgValues value : ekgvalues) {  //gennemgår alle elementer fra en list og udfører kommandoer til at bruge værdien ekgtime og voltage til at sætte på listen, som så bliver hentet fra polyline og sat på x og y kordinat..
