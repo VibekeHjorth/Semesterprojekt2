@@ -21,7 +21,7 @@ public class DataConsumer implements Runnable {
             if (dataList.size()<MAX_SIZE) {
                 dataList.add(data);
             }
-            else{
+            else {
                 System.out.println("List error");
             }
         }
