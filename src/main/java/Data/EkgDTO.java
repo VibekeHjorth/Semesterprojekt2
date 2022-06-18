@@ -7,12 +7,12 @@ public class EkgDTO {
 
     private int id;
     private int person_id;
-    private Date start_time;
+    private Timestamp start_time;
 
     public EkgDTO() {
     }
 
-    public EkgDTO(int id, int person_id, Date start_time) {
+    public EkgDTO(int id, int person_id, Timestamp start_time) {
         this.id = id;
         this.person_id = person_id;
         this.start_time = start_time;
@@ -36,11 +36,11 @@ public class EkgDTO {
         this.person_id = person_id;
     }
 
-    public Date getStart_time() {
+    public Timestamp getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(Date start_time) {
+    public void setStart_time(Timestamp start_time) {
         this.start_time = start_time;
     }
 }

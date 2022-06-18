@@ -12,10 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Polyline;
 import javafx.stage.Stage;
 import Data.DummyEkgRecorder;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+
 
 public class EkgGuiController implements EkgObserver {
     EkgDataRecorder recorder = new DummyEkgRecorder(); //new ArduinoRecorder();

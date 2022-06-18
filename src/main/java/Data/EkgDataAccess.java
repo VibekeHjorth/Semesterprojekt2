@@ -5,19 +5,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.sql.Timestamp;
 
 public class EkgDataAccess {
     public EkgDTO createEKG(int person_id, Date ekgStart) {
         EkgDTO ekgDTO = new EkgDTO();
         // Oversætter Java dato til SQL dato
-        var sqlDate = new java.sql.Date(ekgStart.getTime());
+        var sqlDate = new java.sql.Timestamp(ekgStart.getTime());
         Connection conn = SqlConnection.getConnection();
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO ekg (patient_id, start_time) VALUES (?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             // Kilde:https://stackoverflow.com/questions/530012/how-to-convert-java-util-date-to-java-sql-date?fbclid=IwAR1j4y2K4OBh9y5g97npGGbUwzkZBiaHAW2UHuTfp4xKT3Q3Y5zfMVL9f54
             preparedStatement.setInt(1, person_id);
-            preparedStatement.setDate(2, sqlDate);
+            preparedStatement.setTimestamp(2, sqlDate);
             preparedStatement.executeUpdate();
             // Vi vil gerne kende ID genererert med AUTO_INCREMENT i SQL
             ResultSet rs = preparedStatement.getGeneratedKeys();
@@ -76,7 +77,7 @@ public class EkgDataAccess {
                EkgDTO patientdata= new EkgDTO();
                 patientdata.setId(show_tables.getInt("id"));
                 patientdata.setPerson_id(show_tables.getInt("patient_id"));
-                patientdata.setStart_time(show_tables.getDate("start_time"));
+                patientdata.setStart_time(show_tables.getTimestamp("start_time"));
                 System.out.println("Column 1: " + show_tables.getString(1));
                 System.out.println("Column 2: " + show_tables.getString(2));
                 System.out.println("Column 3: " + show_tables.getString(3));
