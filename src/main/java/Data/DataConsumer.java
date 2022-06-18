@@ -22,7 +22,7 @@ public class DataConsumer implements Runnable {
                 dataList.add(data);
             }
             else {
-                System.out.println("List error");
+                System.out.println("List error"); //fejl
             }
         }
     }
@@ -32,7 +32,7 @@ public class DataConsumer implements Runnable {
             emptyLock.wait();
         }
     }
-    public void notifyOnEmpty(){
+    public void notifyOnEmpty(){         // bliver informeret om at låsen bliver unlocked.
         synchronized (emptyLock){
             emptyLock.notifyAll();
         }
@@ -40,12 +40,12 @@ public class DataConsumer implements Runnable {
 
 
     @Override
-    public void run() {
-        while(true){
+    public void run() {   //venter på der er et signal, hvis der er et signal, så sender den data til databasen.
+        while(true){          //
             //if (dataList.isEmpty()){
             try {
                 //This makes the Thread pause until the producer wakes it up
-                waitOnEmpty();
+                waitOnEmpty();   //vent på listen er tom
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 break;

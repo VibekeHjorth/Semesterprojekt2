@@ -28,7 +28,7 @@ public class PulsController {
     public void buttonPressed(ActionEvent actionEvent) {
         ekgvalues.clear();
         try {
-            File myObj = new File("C:\\DTU\\DTU - Sundhedsteknologi\\2. Semester\\62450 Information technology 2 F22\\Semester Projekt 2\\Arduino og apparatur\\EKG dummy data HENRIKS\\201m (0).txt");
+            File myObj = new File("C:\\Users\\amali\\Documents\\201m (0).1.txt");
             Scanner myReader = new Scanner(myObj);
             long time = 0;
             while (myReader.hasNextLine()) {
