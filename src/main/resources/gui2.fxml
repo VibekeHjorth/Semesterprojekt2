@@ -7,12 +7,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui2">
    <children>
-      <Label layoutX="198.0" layoutY="143.0" text="CPR">
+      <ScrollPane fx:id="sasd" prefHeight="400.0" prefWidth="600.0">
+      <content>
+         <AnchorPane prefHeight="400.0" prefWidth="600.0" >
+
+         <Label layoutX="198.0" layoutY="143.0" text="CPR">
          <font>
             <Font size="15.0" />
          </font></Label>
       <TextField fx:id="cprField" layoutX="274.0" layoutY="141.0" promptText="CPR" />
       <Polyline fx:id="poly" stroke="RED" strokeMiterLimit="100.0" />
       <Button layoutX="319.0" layoutY="200.0" mnemonicParsing="false" onAction="#buttonPressed" text="Enter" />
+         </AnchorPane>
+      </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
