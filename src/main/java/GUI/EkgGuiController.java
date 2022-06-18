@@ -37,7 +37,9 @@ public class EkgGuiController implements EkgObserver {
                 ekgSensorData.getVoltage(),ekgSensorData.getTime());
         consumer.enqueue(ekgValues);
         //This wakes up the consumer to save data
-        consumer.notifyOnEmpty();
+        if (consumer.getValuesCount() > 10) {
+            consumer.notifyOnEmpty();
+        }
         
         Runnable task = new Runnable() {
             @Override

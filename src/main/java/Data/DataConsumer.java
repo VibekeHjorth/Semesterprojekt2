@@ -10,12 +10,19 @@ public class DataConsumer implements Runnable {
     private final Object emptyLock = new Object();
     private int currentEkgId;
 
+    public int getValuesCount(){
+        return dataList.size();
+    }
+
     public void enqueue(EkgValues data){
         synchronized (dataList){
             // In case buffer is overrun, we just drop data -
             // This is instead of Pausing the producer if the queue is full. (fullLock)
             if (dataList.size()<MAX_SIZE) {
                 dataList.add(data);
+            }
+            else{
+                System.out.println("List error");
             }
         }
     }
@@ -35,15 +42,15 @@ public class DataConsumer implements Runnable {
     @Override
     public void run() {
         while(true){
-            if (dataList.isEmpty()){
-                try {
-                    //This makes the Thread pause until the producer wakes it up
-                    waitOnEmpty();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    break;
-                }
+            //if (dataList.isEmpty()){
+            try {
+                //This makes the Thread pause until the producer wakes it up
+                waitOnEmpty();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                break;
             }
+            //}
             List<EkgValues> listCopy;
             synchronized (dataList){
                 //Take a copy of list and empty it;

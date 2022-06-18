@@ -50,7 +50,7 @@ public class EkgDataAccess {
 
                 //ps.clearParameters(); // WHY?
             }
-            System.out.println("Inserted new data in db;");
+            System.out.println("Inserted new data in db; Count = " + ekgValues.size());
 
             ps.executeBatch();
 
