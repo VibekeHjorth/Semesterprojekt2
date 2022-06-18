@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EkgGuiController">
-    <Button layoutX="215.0" layoutY="275.0" onAction="#Loadnyside">Vis patient data</Button>
+    <Button layoutX="215.0" layoutY="275.0" onAction="#patientdata">Vis patient data</Button>
     <Button layoutX="233.0" layoutY="335.0" onMouseClicked="#startEkg">Start Ekg</Button>
     <Button layoutX="240.0" layoutY="390.0" onAction="#loadPulsSide">Puls</Button>
     <Polyline fx:id="poly" layoutX="154.0" layoutY="184.0" stroke="RED" />
