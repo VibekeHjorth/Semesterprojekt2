@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.CategoryAxis?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PulsController">
+               <Label layoutX="198.0" layoutY="143.0" text="CPR">
+                  <font>
+                     <Font size="15.0" />
+                  </font></Label>
+               <TextField fx:id="cprField" layoutX="274.0" layoutY="141.0" promptText="CPR" />
+    <LineChart fx:id="poly" layoutX="14.0" layoutY="52.0" prefHeight="512.0" prefWidth="887.0" title="Exemplo Gŕafico">
+        <xAxis>
+            <NumberAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis side="LEFT"  />
+        </yAxis>
+    </LineChart>
+               <Button layoutX="319.0" layoutY="200.0" mnemonicParsing="false" onAction="#buttonPressed" text="Enter" />
+    <Button layoutX="319.0" layoutY="250.0" mnemonicParsing="false" onAction="#analyzePressed" text="Analyze Pulse" />
+
+</AnchorPane>
+
