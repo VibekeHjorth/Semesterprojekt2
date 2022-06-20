@@ -14,7 +14,7 @@ public class Serialport implements EkgDataRecorder {
 
     // Method to open serialport
     public void open() {
-        serialPort = SerialPort.getCommPort("COM3");
+        serialPort = SerialPort.getCommPort("COM5");
         System.out.println("Trying to open port");
         boolean portOpened = serialPort.openPort();// Open serial port
         serialPort.setComPortParameters(115200, 8, 1, 0);// Set params.
@@ -35,13 +35,17 @@ public class Serialport implements EkgDataRecorder {
                 try {
                     Long time = 0L;
                     while (true) {
-                        Thread.sleep(1000);
+                        Thread.sleep(20);
                         if(observer!=null){
                             if (serialPort.bytesAvailable() > 0) {
                                 var inputText = reader.readLine();
-                                int intResult = Integer.parseInt(inputText);
+                                int intResult = 0;
+                                if (inputText.length() >0) {
+                                    intResult = Integer.parseInt(inputText);
+                                }
                                 System.out.println("Recieved data from arduino: " + inputText);
-                                observer.handle(new EkgSensorDataImpl(intResult, time));
+                                EkgSensorDataImpl ekgSensorData = new EkgSensorDataImpl(intResult, time);
+                                observer.handle(ekgSensorData);
                                 time+=1;
                         }
                     }}

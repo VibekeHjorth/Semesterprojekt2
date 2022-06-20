@@ -18,7 +18,7 @@ import java.util.Date;
 
 
 public class EkgGuiController implements EkgObserver {
-    EkgDataRecorder recorder = new DummyEkgRecorder(); //new ArduinoRecorder();
+    EkgDataRecorder recorder =  new Serialport(); //new DummyEkgRecorder();
     private DataConsumer consumer;
     EkgDTO currentEkg;
     int currentEkgId = 1; //TODO: FIX so that it is related to a patient
@@ -33,6 +33,7 @@ public class EkgGuiController implements EkgObserver {
     @Override
     public void handle(EkgSensorData ekgSensorData) {
         // update UI on UI Thread
+        System.out.println(ekgSensorData.getVoltage());
         EkgValues ekgValues = new EkgValues(0,currentEkg.getId(),
                 ekgSensorData.getVoltage(),ekgSensorData.getTime());
         consumer.enqueue(ekgValues);
@@ -52,7 +53,7 @@ public class EkgGuiController implements EkgObserver {
                     points.clear();
                     cycle += 1;
                 }
-
+                System.out.println(ekgSensorData.getVoltage());
                 points.addAll(ekgSensorData.getTime() - cycle * amountOfDataPoints, ekgSensorData.getVoltage());
             }
         };
