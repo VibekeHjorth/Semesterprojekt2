@@ -27,7 +27,7 @@ public class EkgGuiController implements EkgObserver {
     public Polyline poly;
     ArrayList<EkgSensorData> ekgDataBuffer = new ArrayList<EkgSensorData>();
     double cycle = 0;
-    int amountOfDataPoints = 200;
+    int amountOfDataPoints = 400;
     int pointsGenerated = 0;
 
     @Override
@@ -54,7 +54,7 @@ public class EkgGuiController implements EkgObserver {
                     cycle += 1;
                 }
                 System.out.println(ekgSensorData.getVoltage());
-                points.addAll(ekgSensorData.getTime() - cycle * amountOfDataPoints, ekgSensorData.getVoltage());
+                points.addAll((ekgSensorData.getTime()) - cycle * amountOfDataPoints, (ekgSensorData.getVoltage()*-1));
             }
         };
         Platform.runLater(task); // Alt kører på gui tråden - tasks til Gui sættes i kø

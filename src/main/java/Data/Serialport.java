@@ -42,6 +42,7 @@ public class Serialport implements EkgDataRecorder {
                                 int intResult = 0;
                                 if (inputText.length() >0) {
                                     intResult = Integer.parseInt(inputText);
+                                    System.out.println(intResult);
                                 }
                                 System.out.println("Recieved data from arduino: " + inputText);
                                 EkgSensorDataImpl ekgSensorData = new EkgSensorDataImpl(intResult, time);
