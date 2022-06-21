@@ -54,7 +54,7 @@ public class EkgGuiController implements EkgObserver {
                     cycle += 1;
                 }
                 System.out.println(ekgSensorData.getVoltage());
-                points.addAll((ekgSensorData.getTime()) - cycle * amountOfDataPoints, (ekgSensorData.getVoltage()*-1));
+                points.addAll((ekgSensorData.getTime()) - cycle * amountOfDataPoints, 1100-(ekgSensorData.getVoltage()));
             }
         };
         Platform.runLater(task); // Alt kører på gui tråden - tasks til Gui sættes i kø
