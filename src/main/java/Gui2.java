@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
+/** @Amalie og @Zain*/
 public class Gui2 {
     @FXML
     public Polyline poly;

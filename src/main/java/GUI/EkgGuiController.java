@@ -16,13 +16,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-
+/** @Vibeke, @Amalie og @Asbjørn*/
 public class EkgGuiController implements EkgObserver {
     EkgDataRecorder recorder =  new Serialport(); //new DummyEkgRecorder();
     private DataConsumer consumer;
     EkgDTO currentEkg;
     int currentEkgId = 1; //TODO: FIX so that it is related to a patient
-
+    /** @Vibeke , @Asbjørn*/
     @FXML
     public Polyline poly;
     ArrayList<EkgSensorData> ekgDataBuffer = new ArrayList<EkgSensorData>();
@@ -77,7 +77,6 @@ public class EkgGuiController implements EkgObserver {
         EkgDataAccess ekgDataAccess = new EkgDataAccess();
         EkgDTO ekg = ekgDataAccess.createEKG(1, new Date());
         consumer = new DataConsumer();
-
         new Thread(consumer).start();
 
         // start recorder and tell it to notify this class - observer pattern
@@ -89,7 +88,7 @@ public class EkgGuiController implements EkgObserver {
         consumer = new DataConsumer();
         new Thread(consumer).start();
     }
-
+/**@Amalie*/
     public void patientdata(ActionEvent actionEvent) {
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/gui2.fxml"));
         try {
@@ -101,7 +100,7 @@ public class EkgGuiController implements EkgObserver {
             e.printStackTrace();
         }
     }
-
+/**@Amalie*/
     public void loadPulsSide(ActionEvent actionEvent) { //
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/puls.fxml"));
         try {

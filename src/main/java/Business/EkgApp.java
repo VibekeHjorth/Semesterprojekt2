@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+// Denne klasse er genbrugt fra IT2-projektet
 public class EkgApp extends Application {
     public static Boolean testMode = false;
     // launch() metode indbygget i Application - vi kalder for at starte UI.

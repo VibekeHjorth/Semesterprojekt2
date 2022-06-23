@@ -2,7 +2,7 @@ package Data;
 
 import java.util.ArrayList;
 import java.util.Date;
-
+/** @Vibeke og @Asbjørn*/
 public class EkgValues {
     int id = 0;
     int ekg_Id =0 ;

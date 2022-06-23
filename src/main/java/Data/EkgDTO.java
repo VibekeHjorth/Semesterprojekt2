@@ -3,14 +3,17 @@ package Data;
 import java.sql.Date;
 import java.sql.Timestamp;
 // DTO : Data Transfer Object. DAO: Data Access Object.
+// Denne klasse er mest genbrug fra IT2-projektet, kun få ændringer eks. Timestamp(Vibeke)
 public class EkgDTO {
 
     private int id;
     private int person_id;
     private Timestamp start_time;
 
-    public EkgDTO() {
+    public EkgDTO(){
+
     }
+
 
     public EkgDTO(int id, int person_id, Timestamp start_time) {
         this.id = id;

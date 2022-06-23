@@ -1,7 +1,7 @@
 package Data;
 
 import Business.EkgObserver;
-
+// Denne klasse er genbrugt fra IT2-projektet
 public class DummyEkgRecorder implements EkgDataRecorder {
     private EkgObserver observer;
 

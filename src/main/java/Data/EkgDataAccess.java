@@ -1,12 +1,12 @@
 package Data;
 
-
+/** @Amalie, @Zain, @Vibeke, @Asbjørn*/
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.sql.Timestamp;
-
+// Denne metode er genbrugt fra IT2-projektet , kun opdateret fra sql.Date til sql.Timestamp ( Vibeke)
 public class EkgDataAccess {
     public EkgDTO createEKG(int person_id, Date ekgStart) {
         EkgDTO ekgDTO = new EkgDTO();
@@ -35,7 +35,7 @@ public class EkgDataAccess {
         ekgDTO.setStart_time(sqlDate);
         return ekgDTO;
     }
-
+/** @Vibeke og @Asbjørn forfattere på denne metode*/
     public void createEkgValues(List<EkgValues> ekgValues) {
 
         Connection conn = SqlConnection.getConnection();
@@ -60,7 +60,7 @@ public class EkgDataAccess {
 
         }
     }
-
+/** @Zain og @Amalie forfattere på denne metode*/
     public List<EkgDTO> loadekg(String cpr) {  //liste til at loade ekg, cpr er parameter)
         // loader cpr data fra
         try {
@@ -90,6 +90,7 @@ public class EkgDataAccess {
 
         return null;
     }
+    /** @Zain og @Amalie forfattere på denne metode, Vibeke har hjulpet*/
    public List<EkgValues> loadEkgValues(int ekgId) {
 
        try {

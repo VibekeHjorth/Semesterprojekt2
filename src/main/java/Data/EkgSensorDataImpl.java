@@ -1,11 +1,8 @@
 package Data;
-
+/** @Vibeke og @Asbjørn*/
 public class EkgSensorDataImpl implements EkgSensorData {
     private double voltage;
     private Long time;
-
-    public EkgSensorDataImpl() {
-    }
 
     public EkgSensorDataImpl(double voltage, Long time) {
         this.time=time;

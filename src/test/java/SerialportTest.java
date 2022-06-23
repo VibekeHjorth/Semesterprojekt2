@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
-
+/** @ Subhaan, Luqmann*/
+/*
 public class ArduoinoRecorderTest implements EkgObserver {
     EkgDataRecorder recorder = (EkgDataRecorder) new Serialport();
     List<EkgSensorData> dataList = new LinkedList<>();
@@ -29,5 +30,4 @@ public class ArduoinoRecorderTest implements EkgObserver {
     public void handle(EkgSensorData ekgSensorData) {
         this.dataList.add(ekgSensorData);
     }
-}
-*/
+}*/

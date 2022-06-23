@@ -2,7 +2,7 @@ package Data;
 
 import java.util.LinkedList;
 import java.util.List;
-
+/** @ Vibeke og @Asbjørn*/
 public class DataConsumer implements Runnable {
     private static final int MAX_SIZE = 1500;
     private final LinkedList<EkgValues> dataList = new LinkedList<>();

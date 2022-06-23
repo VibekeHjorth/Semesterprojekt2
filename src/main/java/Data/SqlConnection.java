@@ -3,7 +3,7 @@ package Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+// Denne klasse er genbrugt fra IT2-projektet
 public class SqlConnection {
     private static Connection connection;
     public static Connection getConnection() {

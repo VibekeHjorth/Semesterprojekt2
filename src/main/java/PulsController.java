@@ -16,14 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
+/** @Asbjørn, @Amalie, @Vibeke*/
+// Særligt tak til IT software konsulent Kasper Hjorth Holdum for hjælp til denne løsning
 public class PulsController {
     @FXML
     public LineChart poly;
     //Opretter en polyline
     public TextField cprField;
     //opretter et cprfield
-//opretter en knap, som har en metode, som henter data fra databasen.
+    //opretter en knap, som har en metode, som henter data fra databasen.
     List<EkgValues> ekgvalues = new ArrayList<>();
     public void buttonPressed(ActionEvent actionEvent) {
         ekgvalues.clear();

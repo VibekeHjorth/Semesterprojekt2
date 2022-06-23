@@ -4,7 +4,7 @@ import com.fazecast.jSerialComm.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/** @Vibeke */
 public class Serialport implements EkgDataRecorder {
     // Declare objects whithin class but out from methods.
     SerialPort serialPort;

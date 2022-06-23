@@ -1,7 +1,7 @@
 package Data;
 
 import java.sql.Date;
-
+/** @Vibeke */
 public interface EkgSensorData {
     void setVoltage(double voltage);
     double getVoltage();
